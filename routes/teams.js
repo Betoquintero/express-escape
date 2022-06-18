@@ -8,7 +8,7 @@ const User = require ("../models/User")
 router.get ('/', async (req, res, next) => {
     const teams = await Team.find({});
     try {
-        res.render('teams/teams', {teams})
+        res.render('teams', {teams})
     } catch (error) {
         next(error)
     }
@@ -29,7 +29,7 @@ router.post('/create', async (req, res, next) => {
         try {
         await Team.create ({name, participants})
         //res.json({teams})
-        res.redirect("teams/teams");
+        res.redirect("teams");
     } catch (error) {      
         next(error)
     }
@@ -39,7 +39,7 @@ router.get("/:teamId", async (req, res, next)=> {
     const {teamId} = req.params;
     try {
         const teams = await Team.findById(teamId).populate('participants')
-        res.render('teams/team-details', {teams})
+        res.render('teams/teams-details', {teams})
     } catch (error) {
         next(error)        
     }
