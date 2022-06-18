@@ -19,7 +19,7 @@ const enigmaSchema = new Schema({
         ref: 'Team'
     },
     solved: {
-        type:boolean
+        type: Boolean
     }
     
 });

@@ -1,0 +1,27 @@
+<h2>New Enigma</h2>
+
+<form action = "/enigma/create" method = "POST">
+
+<label> Title:</label>
+<input type="text" name="title"/>
+
+<label> number:</label>
+<input type="number" name="number"/>
+
+<label> Description:</label>
+<input type="text" name="description"/>
+
+<label> Image:</label>
+<input type="text" name="image"/>
+
+<label> Teams:</label>
+<select name = "teams" multiple>
+    {{#each teams}}
+    <option value = "{{_id}}">{{name}}</option>
+    {{/each}}
+</select>
+
+
+<button type="submit">Add new participant</button>
+
+</form> 
