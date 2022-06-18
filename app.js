@@ -52,6 +52,9 @@ app.use('/auth', userRouter);
 const userEnigma = require('./routes/enigma');
 app.use('/enigma', userEnigma);
 
+const teamsRouter = require ('./routes/teams');
+app.use('/teams', teamsRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
