@@ -46,6 +46,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 
+const userRouter = require('./routes/auth');
+app.use('/auth', userRouter);
+
+const userEnigma = require('./routes/enigma');
+app.use('/enigma', userEnigma);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

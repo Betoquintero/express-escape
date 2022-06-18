@@ -1,0 +1,25 @@
+<h1>Create a new account</h1>
+
+<div id="form">
+  <form action="/auth/signup" method="POST">
+
+    <label>Name</label>
+    <input type="text" name="name" placeholder="Dani G" />
+
+    <label>Age</label>
+    <input type="number" name="age"/>
+
+    <label>Email</label>
+    <input type="email" name="email" placeholder="********" />
+
+    <label>Password</label>
+    <input type="password" name="password" placeholder="********" />
+
+    {{#if error}}
+      <p style="color: red;">{{error}}</p>
+    {{/if}}
+
+    <button type="submit">Create account</button>
+
+  </form>
+</div>
