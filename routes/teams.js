@@ -5,7 +5,7 @@ const User = require ("../models/User")
 
 // all your routes here
 
-router.get ('/', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     const teams = await Team.find({});
     try {
         res.render('teams/teams', {teams})
@@ -15,7 +15,7 @@ router.get ('/', async (req, res, next) => {
 });
 
 
-router.get ('/create', async (req, res, next) => {
+router.get('/create', async (req, res, next) => {
     try {
         const participants = await User.find({})
         res.render('teams/new-team', {participants})
@@ -77,15 +77,7 @@ router.post('/delete/:teamId', async (req, res, next ) => {
     }
 });
 
-// router.get("/:movieid", async (req, res, next)=> {
-//     const {movieid} = req.params;
-//     try {
-//         const movie = await Movie.findById(movieid).populate('cast')
-//         res.render('movies/movie-details', {movie})
-//     } catch (error) {
-//         next(error)        
-//     }
-// });
+
 
 router.post('/delete/:movieid', async (req, res, next ) => {
     const {movieid} = req.params;
@@ -96,10 +88,6 @@ router.post('/delete/:movieid', async (req, res, next ) => {
         next(error)        
     }
 });
-
-
-
-
 
 
 
