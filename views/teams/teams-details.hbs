@@ -1,5 +1,5 @@
 <h2>Team details</h2>
-<p><strong>Ttitle: </strong>{{teams.name}}</p>
+<p><strong>Name: </strong>{{teams.name}}</p>
 
 
 {{#each teams.participants}}
@@ -16,6 +16,6 @@
 
 <button type="submit">Delete Team</button>
 
-<a href = "/teams/edit/{{teams._id}}">Edit Team</a>
+<a href = "/teams/{{teams._id}}/edit">Edit Team</a>
 
 </form>

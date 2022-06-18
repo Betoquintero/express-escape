@@ -8,7 +8,7 @@ const User = require ("../models/User")
 router.get ('/', async (req, res, next) => {
     const teams = await Team.find({});
     try {
-        res.render('teams', {teams})
+        res.render('teams/teams', {teams})
     } catch (error) {
         next(error)
     }
@@ -29,7 +29,7 @@ router.post('/create', async (req, res, next) => {
         try {
         await Team.create ({name, participants})
         //res.json({teams})
-        res.redirect("teams");
+        res.redirect("/teams");
     } catch (error) {      
         next(error)
     }
@@ -44,6 +44,29 @@ router.get("/:teamId", async (req, res, next)=> {
         next(error)        
     }
 });
+
+router.get('/:teamId/edit', async (req, res, next) => {
+    const {teamId} = req.params
+    try {
+        const teams = await Team.findById(teamId).populate("participants")
+        const participants = await User.find({})
+        res.render("teams/edit-team", {teams, participants})
+    } catch (error) {
+        next(error)
+    }
+})
+
+router.post('/:teamId', async (req, res, next) => {
+    const {teamId} = req.params;
+    const {name, participants} = req.body;
+    try {
+        console.log('estamos aquijkhaekjjkcajksjkcekjjkajkfjk')
+        await Team.findByIdAndUpdate(teamId, {name, participants}, {new:true})
+        res.redirect(`/teams/${teamId}`)
+    } catch (error) {
+        next(error)
+    }
+})
 
 // router.get("/:movieid", async (req, res, next)=> {
 //     const {movieid} = req.params;
@@ -65,27 +88,9 @@ router.get("/:teamId", async (req, res, next)=> {
 //     }
 // });
 
-// router.get('/:movieid/edit', async (req, res, next) => {
-//     const {movieid} = req.params
-//     try {
-//         const movie = await Movie.findById(movieid).populate("cast")
-//         const celebrities = await Celebrity.find({})
-//         res.render("movies/edit-movie", {movie, celebrities})
-//     } catch (error) {
-//         next(error)
-//     }
-// })
 
-// router.post(':/movieid/edit', async (req, res, next) => {
-//     const {movieid} = req.params;
-//     const {title, genre, plot, cast} = req.body;
-//     try {
-//         await Movie.findByIdAndUpdate(movieid, {genre, plot, cast}, {new:true})
-//         res.redirect(`/movies/${movieid}`)
-//     } catch (error) {
-//         next(error)
-//     }
-// })
+
+
 
 
 
