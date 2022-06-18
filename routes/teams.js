@@ -56,17 +56,26 @@ router.get('/:teamId/edit', async (req, res, next) => {
     }
 })
 
-router.post('/:teamId', async (req, res, next) => {
+router.post('/:teamId/edit', async (req, res, next) => {
     const {teamId} = req.params;
     const {name, participants} = req.body;
-    try {
-        console.log('estamos aquijkhaekjjkcajksjkcekjjkajkfjk')
+    try {        
         await Team.findByIdAndUpdate(teamId, {name, participants}, {new:true})
         res.redirect(`/teams/${teamId}`)
     } catch (error) {
         next(error)
     }
 })
+
+router.post('/delete/:teamId', async (req, res, next ) => {
+    const {teamId} = req.params;
+    try {
+        await Team.findByIdAndDelete(teamId)
+        res.redirect('/teams')
+    } catch (error) {
+        next(error)        
+    }
+});
 
 // router.get("/:movieid", async (req, res, next)=> {
 //     const {movieid} = req.params;
@@ -78,15 +87,15 @@ router.post('/:teamId', async (req, res, next) => {
 //     }
 // });
 
-// router.post('/delete/:movieid', async (req, res, next ) => {
-//     const {movieid} = req.params;
-//     try {
-//         await Movie.findByIdAndDelete(movieid)
-//         res.redirect('/movies')
-//     } catch (error) {
-//         next(error)        
-//     }
-// });
+router.post('/delete/:movieid', async (req, res, next ) => {
+    const {movieid} = req.params;
+    try {
+        await Movie.findByIdAndDelete(movieid)
+        res.redirect('/movies')
+    } catch (error) {
+        next(error)        
+    }
+});
 
 
 
